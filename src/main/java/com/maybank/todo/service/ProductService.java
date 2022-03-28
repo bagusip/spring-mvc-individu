@@ -34,11 +34,12 @@ public class ProductService {
 		return repository.findByName(name);
 	}
 	
+	
 	public String deleteProduct(int id) {
 		repository.deleteById(id);
-		return "Product Removed: "+id;				
+		return "Product Removed";				
 	}
-
+	
 	public Product updateProduct(Product product) {
 		Product existingProduct = repository.findById(product.getId()).orElse(null);
 		existingProduct.setName(product.getName());

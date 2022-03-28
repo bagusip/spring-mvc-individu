@@ -74,10 +74,19 @@ public class ProductController {
 		return service.updateProduct(product);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@RequestMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable int id) {
-		return service.deleteProduct(id);
+		System.out.println(id);
+		service.deleteProduct(id);
+		return "redirect:/product/list-all";
 	}
+//	
+//	@RequestMapping("/delete/{id}")
+//	public String delete(@PathVariable int id) {
+//		System.out.println(id);
+//		todoService.deleteTodo(id);
+//		return "todo/list-all";
+//	}
 	
 	
 }

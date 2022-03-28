@@ -37,8 +37,8 @@
   <td>${product.quantity}</td>
   <td>Rp. <fmt:formatNumber value = "${product.price}" type = "number"/></td>
   <td>
-   <a href="edit/${todo.id}" class="btn btn-success">Edit</a>
-   <a href="delete/${todo.id} " class="btn btn-danger">Delete</a>
+   <a href="edit/${product.id}" class="btn btn-success">Edit </a>
+   <a href="delete/${product.id} " class="btn btn-danger">Delete</a>
 </td>
   </tr>
   </c:forEach>
