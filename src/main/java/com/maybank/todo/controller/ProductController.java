@@ -59,9 +59,13 @@ public class ProductController {
 		return service.getProducts();
 	}
 	
-	@GetMapping("/product/{id}")
-	public Product findProductById(@PathVariable int id) {
-		return service.getProductsById(id);
+	@GetMapping("/edit/{id}")
+	public String findProductById(Model model,@PathVariable int id) {
+		Product product = service.getProductsById(id);
+		System.out.println("Edit Data: " + product);
+		model.addAttribute("product", product);
+//		return service.getProductsById(id);
+		return "product/editForm";
 	}
 	
 	@GetMapping("/products/{name}")
@@ -69,9 +73,10 @@ public class ProductController {
 		return service.getProductsByName(name);
 	}
 	
-	@PutMapping("/updateproduct")
-	public Product updateProduct(@RequestBody Product product) {
-		return service.updateProduct(product);
+	@RequestMapping("updateproduct")
+	public String updateProduct(@ModelAttribute Product product) {
+		service.updateProduct(product);
+		return "redirect:/product/list-all";
 	}
 	
 	@RequestMapping("/delete/{id}")

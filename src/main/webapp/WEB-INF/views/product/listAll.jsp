@@ -35,7 +35,7 @@
      <td>${product.id}</td>
   <td>${product.name}</td>
   <td>${product.quantity}</td>
-  <td>Rp. <fmt:formatNumber value = "${product.price}" type = "number"/></td>
+  <td>$<fmt:formatNumber value = "${product.price}" type = "number"/></td>
   <td>
    <a href="edit/${product.id}" class="btn btn-success">Edit </a>
    <a href="delete/${product.id} " class="btn btn-danger">Delete</a>
