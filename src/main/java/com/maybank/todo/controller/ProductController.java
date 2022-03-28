@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,9 +33,19 @@ public class ProductController {
         return "product/listAll";
     }
 	
-	@PostMapping("/addproduct")
-	public Product addProducts(@RequestBody Product product) {
-		return service.saveProduct(product);
+	
+	@RequestMapping("/addproduct")
+	public String addProducts(Model model) {
+//		return service.saveProduct(product);
+		model.addAttribute("product", new Product() );
+		return "product/addForm";
+	}
+	
+	@RequestMapping("save")
+	public String save(@ModelAttribute Product product) {
+		System.out.println("Form Data: " + product);
+		service.saveProduct(product);
+		return "redirect:list-all";
 	}
 	
 	

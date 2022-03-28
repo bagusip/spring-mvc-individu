@@ -16,7 +16,7 @@
 
 <div style="width: 50%; margin-left: auto; margin-right: auto;">
    <h1>Product List</h1>
-   <a href='<c:url value="add-product"/>' class="btn btn-primary">Add</a>
+   <a href='<c:url value="addproduct"/>' class="btn btn-primary">Add</a>
    <br>
    <br>
    <br>
