@@ -25,73 +25,62 @@ import com.maybank.todo.service.ProductService;
 public class ProductController {
 	@Autowired
 	private ProductService service;
-	
+
 	@GetMapping("/list-all")
-    public String listAll(Model model) {
-        model.addAttribute("products", service.getProducts());
-        System.out.println(service.getProducts());
-        return "product/listAll";
-    }
-	
-	
+	public String listAll(Model model) {
+		model.addAttribute("products", service.getProducts());
+		System.out.println(service.getProducts());
+		return "product/listAll";
+	}
+
 	@RequestMapping("/addproduct")
 	public String addProducts(Model model) {
 //		return service.saveProduct(product);
-		model.addAttribute("product", new Product() );
+		model.addAttribute("product", new Product());
 		return "product/addForm";
 	}
-	
+
 	@RequestMapping("save")
 	public String save(@ModelAttribute Product product) {
 		System.out.println("Form Data: " + product);
 		service.saveProduct(product);
 		return "redirect:list-all";
 	}
-	
-	
+
 	@PostMapping("/addproducts")
 	public List<Product> addProducts(@RequestBody List<Product> products) {
 		return service.saveProduct(products);
 	}
-	
+
 	@GetMapping("/products")
-	public List<Product> findAllProducts(){
+	public List<Product> findAllProducts() {
 		return service.getProducts();
 	}
-	
+
 	@GetMapping("/edit/{id}")
-	public String findProductById(Model model,@PathVariable int id) {
+	public String findProductById(Model model, @PathVariable int id) {
 		Product product = service.getProductsById(id);
 		System.out.println("Edit Data: " + product);
 		model.addAttribute("product", product);
 //		return service.getProductsById(id);
 		return "product/editForm";
 	}
-	
+
 	@GetMapping("/products/{name}")
 	public Product findProductByName(@PathVariable String name) {
 		return service.getProductsByName(name);
 	}
-	
+
 	@RequestMapping("updateproduct")
 	public String updateProduct(@ModelAttribute Product product) {
 		service.updateProduct(product);
 		return "redirect:/product/list-all";
 	}
-	
+
 	@RequestMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable int id) {
 		System.out.println(id);
 		service.deleteProduct(id);
 		return "redirect:/product/list-all";
 	}
-//	
-//	@RequestMapping("/delete/{id}")
-//	public String delete(@PathVariable int id) {
-//		System.out.println(id);
-//		todoService.deleteTodo(id);
-//		return "todo/list-all";
-//	}
-	
-	
 }
